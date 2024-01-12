@@ -26,7 +26,7 @@ useInfiniteQuery<FetchResponse<Game>,Error>({
   queryKey:['games', gameQuery],
   queryFn:({pageParam = 1})=>apiClient.getAll({
     params:
-    {genres: gameQuery.genre?.id, parent_platforms: gameQuery.platform?.id, ordering: gameQuery.sortOrder, search: gameQuery.searchText, page: pageParam}
+    {genres: gameQuery.genreId, parent_platforms: gameQuery.platformId, ordering: gameQuery.sortOrder, search: gameQuery.searchText, page: pageParam}
   }),
   getNextPageParam:(lastPage, allPages)=>{
     return lastPage.next? allPages.length+1 : undefined;
