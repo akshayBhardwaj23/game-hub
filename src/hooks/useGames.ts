@@ -2,6 +2,7 @@ import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { GameQuery } from "../App";
 import APIClient, { FetchResponse } from "../services/api-client";
 import { Platform } from "./usePlatforms";
+import ms from "ms";
 
 //interface removed as it was duplicate to interface in usePlatform
 // export interface Platform{
@@ -31,7 +32,7 @@ useInfiniteQuery<FetchResponse<Game>,Error>({
   getNextPageParam:(lastPage, allPages)=>{
     return lastPage.next? allPages.length+1 : undefined;
   },
-  staleTime: 24*60*60*1000,//24 hours
+  staleTime: ms('24h')
 })
 
 export default useGames
