@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 
 export interface FetchResponse<T>{
     count: number,
-    next: string | null,
+    next?: string | null,
     results: T[];
 }
 
@@ -25,4 +25,4 @@ class APIClient<T>{
     }
 }
 
-export default APIClient
+export default APIClient;
