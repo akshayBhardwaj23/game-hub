@@ -1,8 +1,8 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { GameQuery } from "../App";
 import APIClient, { FetchResponse } from "../services/api-client";
 import { Platform } from "./usePlatforms";
 import ms from "ms";
+import useGameQueryStore from "../store";
 
 //interface removed as it was duplicate to interface in usePlatform
 // export interface Platform{
@@ -22,8 +22,10 @@ export interface Game {
     rating_top: number;
   }
   
-const useGames = (gameQuery: GameQuery) => 
-useInfiniteQuery<FetchResponse<Game>,Error>({
+const useGames = (/*gameQuery: GameQuery*/) => {
+const gameQuery = useGameQueryStore(s=>s.gameQuery)
+
+  return useInfiniteQuery<FetchResponse<Game>,Error>({
   queryKey:['games', gameQuery],
   queryFn:({pageParam = 1})=>apiClient.getAll({
     params:
@@ -34,5 +36,6 @@ useInfiniteQuery<FetchResponse<Game>,Error>({
   },
   staleTime: ms('24h')
 })
+}
 
 export default useGames
