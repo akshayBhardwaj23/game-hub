@@ -1,8 +1,8 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import APIClient, { FetchResponse } from "../services/api-client";
-import { Platform } from "./usePlatforms";
 import ms from "ms";
 import useGameQueryStore from "../store";
+import { Game } from "../entities/Game";
 
 //interface removed as it was duplicate to interface in usePlatform
 // export interface Platform{
@@ -13,17 +13,6 @@ import useGameQueryStore from "../store";
 
 const apiClient=  new APIClient<Game>('/games');
 
-export interface Game {
-    id: number;
-    name: string;
-    slug: string;
-    description_raw: string;
-    background_image: string;
-    parent_platforms:  {platform: Platform}[];
-    metacritic: number;
-    rating_top: number;
-  }
-  
 const useGames = (/*gameQuery: GameQuery*/) => {
 const gameQuery = useGameQueryStore(s=>s.gameQuery)
 
