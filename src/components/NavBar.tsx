@@ -3,6 +3,7 @@ import React from "react";
 import logo from "../assets/logo.png";
 import ColorModeSwitch from "./ColorModeSwitch";
 import SearchInput from "./SearchInput";
+import { Link } from "react-router-dom";
 
 //comments are after introducing zustand
 
@@ -13,7 +14,10 @@ import SearchInput from "./SearchInput";
 const NavBar = (/*{ onSearch }: Props*/) => {
   return (
     <HStack padding="10px">
-      <Image src={logo} boxSize="60px"></Image>
+      <Link to="/">
+        <Image src={logo} boxSize="60px" objectFit="cover" />
+      </Link>
+
       <SearchInput /*onSearch={onSearch}*/ />
       <ColorModeSwitch></ColorModeSwitch>
     </HStack>
